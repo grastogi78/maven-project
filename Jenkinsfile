@@ -1,4 +1,6 @@
 pipeline {
+    jdk = tool name: 'JDK17'
+    env.JAVA_HOME = "${jdk}"
     agent any
     stages{
         stage('Build'){
