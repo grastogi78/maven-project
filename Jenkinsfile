@@ -14,6 +14,12 @@ pipeline {
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
             }
+          }
+        stage ('Deploy to Staging'){
+            steps {
+                build job: 'maven-deployment'
+            }
+
         }
     }
 }
