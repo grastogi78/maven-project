@@ -27,19 +27,13 @@ stages{
         }
 
         stage ('Deployments'){
-            parallel{
-                stage ('Deploy to Staging'){
-                    steps {
-                        sh "scp -i /var/lib/jenkins/JenkinsTraining.pem **/target/*.war ec2-user@${params.tomcat_staging}:/var/lib/tomcat/webapps"
-                    }
-                }
 
-                stage ("Deploy to Production"){
-                    steps {
-                        sh "scp -i /var/lib/jenkins/JenkinsTraining.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
-                    }
+            stage ("Deploy to Production"){
+                steps {
+                    sh "scp -i /var/lib/jenkins/JenkinsTraining.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
                 }
             }
+
         }
     }
 }
