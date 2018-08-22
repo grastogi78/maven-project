@@ -1,4 +1,4 @@
-#to be used for Full automated pipeline job onto a ec2 instance
+
 pipeline {
     agent any
 
