@@ -1,15 +1,6 @@
 pipeline {
     agent any
-
-    parameters {
-         string(name: 'tomcat_prod', defaultValue: '13.57.182.234', description: 'Production Server')
-    }
-
-    triggers {
-         pollSCM('* * * * *')
-     }
-
-stages{
+    stages{
         stage('Build'){
             tools {
                 jdk "localJDK"
@@ -24,12 +15,5 @@ stages{
                 }
             }
         }
-
-        stage ("Deploy to Production"){
-            steps {
-                sh "scp -i /var/lib/jenkins/JenkinsTraining.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
-            }
-        }
-
-      }
+    }
 }
